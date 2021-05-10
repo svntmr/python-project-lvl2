@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.1.0"
+version = "0.2.0"
 description = "A small tool to find differences in files"
 authors = ["Savin Timur <svn.tmr@bk.ru>"]
 repository = 'https://github.com/svntmr/python-project-lvl2'
@@ -17,6 +17,7 @@ packages = [
 python = "^3.9"
 
 [tool.poetry.dev-dependencies]
+wemake-python-styleguide = "^0.15.2"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
