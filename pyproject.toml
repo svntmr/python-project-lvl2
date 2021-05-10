@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "A small tool to find differences in files"
+authors = ["Savin Timur <svn.tmr@bk.ru>"]
+repository = 'https://github.com/svntmr/python-project-lvl2'
+classifiers = [
+  'Topic :: Software Development',
+  'Topic :: Software Development :: Libraries :: Python Modules',
+]
+
+packages = [
+  { include = "gendiff" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
