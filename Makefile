@@ -12,3 +12,6 @@ package-install:
 
 lint:
 	poetry run flake8 gendiff
+
+pre-commit-check:
+	pre-commit run --all-files
