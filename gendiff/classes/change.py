@@ -1,14 +1,14 @@
-from enum import Enum
+from enum import Enum, auto
 from typing import Any, Optional
 
 from pydantic import BaseModel
 
 
 class ChangeType(Enum):
-    no_change = "no_change"
-    missing = "missing"
-    changed = "changed"
-    added = "added"
+    NO_CHANGE = auto()
+    MISSING = auto()
+    CHANGED = auto()
+    ADDED = auto()
 
 
 class Change(BaseModel):
