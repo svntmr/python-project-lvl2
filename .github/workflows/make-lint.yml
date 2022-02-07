@@ -1,12 +1,8 @@
 name: Project code check with flake8
 
 on:
-  push:
-    branches:
-      - "**"
-  pull_request:
-    branches:
-      - "**"
+  - push
+  - pull_request
 
 jobs:
   run_lint:
