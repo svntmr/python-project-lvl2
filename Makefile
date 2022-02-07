@@ -15,3 +15,6 @@ lint:
 
 pre-commit-check:
 	pre-commit run --all-files
+
+run-tests:
+	pytest tests
