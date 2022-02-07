@@ -33,7 +33,7 @@ def build_changes(
                 Change(
                     key=key,
                     value=first_file_value,
-                    type=ChangeType.missing,
+                    type=ChangeType.MISSING,
                 )
             )
         elif first_file_value == second_file_value:
@@ -41,12 +41,12 @@ def build_changes(
                 Change(
                     key=key,
                     value=first_file_value,
-                    type=ChangeType.no_change,
+                    type=ChangeType.NO_CHANGE,
                 )
             )
         elif first_file_value is None and second_file_value is not None:
             changes.append(
-                Change(key=key, value=second_file_value, type=ChangeType.added)
+                Change(key=key, value=second_file_value, type=ChangeType.ADDED)
             )
         elif first_file_value != second_file_value:
             changes.append(
@@ -54,7 +54,7 @@ def build_changes(
                     key=key,
                     value=first_file_value,
                     changed_value=second_file_value,
-                    type=ChangeType.changed,
+                    type=ChangeType.CHANGED,
                 )
             )
 

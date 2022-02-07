@@ -10,13 +10,13 @@ def make_diff_string(changes: List[Change]) -> str:
     prepared_changes = []
     for change in changes:
         change_type = change.type
-        if change_type is ChangeType.missing:
+        if change_type is ChangeType.MISSING:
             prepared_changes.append(make_missing_string(change))
-        elif change_type is ChangeType.no_change:
+        elif change_type is ChangeType.NO_CHANGE:
             prepared_changes.append(make_no_change_string(change))
-        elif change_type is ChangeType.added:
+        elif change_type is ChangeType.ADDED:
             prepared_changes.append(make_added_string(change))
-        elif change_type is ChangeType.changed:
+        elif change_type is ChangeType.CHANGED:
             prepared_changes.append(make_changed_string(change))
 
     prepared_changes_string = "\n  ".join(prepared_changes)
