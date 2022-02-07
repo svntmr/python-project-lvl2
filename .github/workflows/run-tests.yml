@@ -1,4 +1,4 @@
-name: Project code check with flake8
+name: Pytest
 
 on:
   push:
@@ -26,6 +26,6 @@ jobs:
         run: |
           poetry config virtualenvs.create false
           make install
-      - name: Pre-commit hooks
+      - name: Run tests
         run: |
-          make pre-commit-check
+          make run-tests
