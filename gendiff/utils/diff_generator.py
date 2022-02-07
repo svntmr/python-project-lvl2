@@ -1,46 +1,33 @@
 from json import dumps
+from types import MappingProxyType
 from typing import List, Any, Tuple
 
 from gendiff.classes.change import Change, ChangeType
 
 
+_DIFF_STRING_TEMPLATES = MappingProxyType(
+    {
+        ChangeType.MISSING: "- {key}: {value}",
+        ChangeType.NO_CHANGE: "  {key}: {value}",
+        ChangeType.ADDED: "+ {key}: {value}",
+        ChangeType.CHANGED: "- {key}: {value}\n  + {key}: {changed_value}",
+    }
+)
+
+
 def make_diff_string(changes: List[Change]) -> str:
     diff_start = "{\n  "
     diff_end = "\n}\n"
-    prepared_changes = []
-    for change in changes:
-        change_type = change.type
-        if change_type is ChangeType.MISSING:
-            prepared_changes.append(make_missing_string(change))
-        elif change_type is ChangeType.NO_CHANGE:
-            prepared_changes.append(make_no_change_string(change))
-        elif change_type is ChangeType.ADDED:
-            prepared_changes.append(make_added_string(change))
-        elif change_type is ChangeType.CHANGED:
-            prepared_changes.append(make_changed_string(change))
-
+    prepared_changes = [_generate_diff_string(change) for change in changes]
     prepared_changes_string = "\n  ".join(prepared_changes)
     return diff_start + prepared_changes_string + diff_end
 
 
-def make_missing_string(change: Change) -> str:
-    json_value, __, key = _extract_change_data(change)
-    return f"- {key}: {json_value}"
-
-
-def make_no_change_string(change: Change) -> str:
-    json_value, __, key = _extract_change_data(change)
-    return f"  {key}: {json_value}"
-
-
-def make_added_string(change: Change) -> str:
-    json_value, __, key = _extract_change_data(change)
-    return f"+ {key}: {json_value}"
-
-
-def make_changed_string(change: Change) -> str:
+def _generate_diff_string(change: Change) -> str:
     json_value, changed_json_value, key = _extract_change_data(change)
-    return f"- {key}: {json_value}\n  + {key}: {changed_json_value}"
+    return _DIFF_STRING_TEMPLATES[change.type].format(
+        key=key, value=json_value, changed_value=changed_json_value
+    )
 
 
 def _convert_to_json_value(value: Any) -> str:
