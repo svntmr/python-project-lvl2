@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from gendiff.gendiff import generate_diff
+from gendiff import generate_diff
 from gendiff.utils.file_paths import TEST_FIXTURES_PATH, RESOURCE_FIXTURES_PATH
 
 
