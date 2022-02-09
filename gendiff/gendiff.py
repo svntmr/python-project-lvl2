@@ -10,50 +10,56 @@ def generate_diff(first_file_path: str, second_file_path: str) -> str:
     first_file_content = get_json_file_content(first_file_path)
     second_file_content = get_json_file_content(second_file_path)
 
-    keys_to_check = set(list(first_file_content) + list(second_file_content))
-
     changes = build_changes(
-        first_dict=first_file_content,
-        second_dict=second_file_content,
-        keys_to_check=keys_to_check,
+        source=first_file_content,
+        changed=second_file_content,
     )
 
     return make_diff_string(changes)
 
 
-def build_changes(
-    first_dict: dict, second_dict: dict, keys_to_check: set
-) -> List[Change]:
+def build_changes(source: dict, changed: dict) -> List[Change]:
     changes = []
-    for key in keys_to_check:
-        first_file_value = first_dict.get(key)
-        second_file_value = second_dict.get(key)
-        if first_file_value is not None and second_file_value is None:
-            changes.append(
-                Change(
-                    key=key,
-                    value=first_file_value,
-                    type=ChangeType.MISSING,
-                )
+
+    source_keys = set(source.keys())
+    changed_keys = set(changed.keys())
+    added_keys = changed_keys - source_keys
+    missing_keys = source_keys - changed_keys
+    common_keys = source_keys.intersection(changed_keys)
+
+    for key in missing_keys:
+        changes.append(
+            Change(
+                key=key,
+                value=source.get(key),
+                type=ChangeType.MISSING,
             )
-        elif first_file_value == second_file_value:
+        )
+
+    for key in added_keys:
+        changes.append(
+            Change(
+                key=key,
+                value=changed.get(key),
+                type=ChangeType.ADDED,
+            )
+        )
+
+    for key in common_keys:
+        if source[key] == changed[key]:
             changes.append(
                 Change(
                     key=key,
-                    value=first_file_value,
+                    value=source[key],
                     type=ChangeType.NO_CHANGE,
                 )
             )
-        elif first_file_value is None and second_file_value is not None:
-            changes.append(
-                Change(key=key, value=second_file_value, type=ChangeType.ADDED)
-            )
-        elif first_file_value != second_file_value:
+        else:
             changes.append(
                 Change(
                     key=key,
-                    value=first_file_value,
-                    changed_value=second_file_value,
+                    value=source[key],
+                    changed_value=changed[key],
                     type=ChangeType.CHANGED,
                 )
             )
