@@ -11,6 +11,10 @@
 
 [![asciicast](https://asciinema.org/a/ui1oQLiK6bOb9jEJVkBRBopLZ.svg)](https://asciinema.org/a/ui1oQLiK6bOb9jEJVkBRBopLZ)
 
-#### Simple usage
+#### JSON file diff
 
 [![asciicast](https://asciinema.org/a/HXdEbkC7QjxQibg3YV5Bk9EYM.svg)](https://asciinema.org/a/HXdEbkC7QjxQibg3YV5Bk9EYM)
+
+#### YAML file diff
+
+[![asciicast](https://asciinema.org/a/RSIa97s3EpO5Usr8F5QhWCUwB.svg)](https://asciinema.org/a/RSIa97s3EpO5Usr8F5QhWCUwB)
