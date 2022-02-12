@@ -1,9 +1,8 @@
 from json import dumps
 from types import MappingProxyType
-from typing import List, Any, Tuple
+from typing import Any, List, Tuple
 
 from gendiff.classes.change import Change, ChangeType
-
 
 _DIFF_STRING_TEMPLATES = MappingProxyType(
     {
