@@ -3,12 +3,12 @@ from typing import List
 
 from gendiff.classes.change import Change, ChangeType
 from gendiff.utils.diff_generator import make_diff_string
-from gendiff.utils.file_operations import get_json_file_content
+from gendiff.utils.file_operations import get_file_content
 
 
 def generate_diff(first_file_path: str, second_file_path: str) -> str:
-    first_file_content = get_json_file_content(first_file_path)
-    second_file_content = get_json_file_content(second_file_path)
+    first_file_content = get_file_content(first_file_path)
+    second_file_content = get_file_content(second_file_path)
 
     changes = build_changes(
         source=first_file_content,
