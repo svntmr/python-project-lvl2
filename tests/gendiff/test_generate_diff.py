@@ -2,27 +2,29 @@ from pathlib import Path
 
 import pytest
 from gendiff import generate_diff
-from gendiff.utils.file_paths import RESOURCE_FIXTURES_PATH, TEST_FIXTURES_PATH
+from tests.paths import TESTS_PATH
 
 
-class TestGenerateDiff:
-    base_json_file_path: str = f"{TEST_FIXTURES_PATH}/gendiff/base.json"
-    missing_json_file_path: str = f"{TEST_FIXTURES_PATH}/gendiff/missing.json"
-    added_json_file_path: str = f"{TEST_FIXTURES_PATH}/gendiff/added.json"
-    changed_json_file_path: str = f"{TEST_FIXTURES_PATH}/gendiff/changed.json"
-    combined_json_file_path: str = f"{RESOURCE_FIXTURES_PATH}/file2.json"
+class TestGenerateDiffPlainFiles:
+    base_folder: str = f"{TESTS_PATH}/gendiff/fixtures/plain"
 
-    base_yaml_file_path: str = f"{TEST_FIXTURES_PATH}/gendiff/base.yml"
-    missing_yaml_file_path: str = f"{TEST_FIXTURES_PATH}/gendiff/missing.yml"
-    added_yaml_file_path: str = f"{TEST_FIXTURES_PATH}/gendiff/added.yml"
-    changed_yaml_file_path: str = f"{TEST_FIXTURES_PATH}/gendiff/changed.yaml"
-    combined_yaml_file_path: str = f"{RESOURCE_FIXTURES_PATH}/file2.yml"
+    base_json_file_path: str = f"{base_folder}/base.json"
+    missing_json_file_path: str = f"{base_folder}/missing.json"
+    added_json_file_path: str = f"{base_folder}/added.json"
+    changed_json_file_path: str = f"{base_folder}/changed.json"
+    combined_json_file_path: str = f"{base_folder}/file2.json"
 
-    identical_diff_path: str = f"{TEST_FIXTURES_PATH}/gendiff/diffs/identical"
-    missing_diff_path: str = f"{TEST_FIXTURES_PATH}/gendiff/diffs/missing"
-    added_diff_path: str = f"{TEST_FIXTURES_PATH}/gendiff/diffs/added"
-    changed_diff_path: str = f"{TEST_FIXTURES_PATH}/gendiff/diffs/changed"
-    combined_diff_path: str = f"{TEST_FIXTURES_PATH}/gendiff/diffs/full"
+    base_yaml_file_path: str = f"{base_folder}/base.yml"
+    missing_yaml_file_path: str = f"{base_folder}/missing.yml"
+    added_yaml_file_path: str = f"{base_folder}/added.yml"
+    changed_yaml_file_path: str = f"{base_folder}/changed.yaml"
+    combined_yaml_file_path: str = f"{base_folder}/file2.yml"
+
+    identical_diff_path: str = f"{base_folder}/diffs/identical"
+    missing_diff_path: str = f"{base_folder}/diffs/missing"
+    added_diff_path: str = f"{base_folder}/diffs/added"
+    changed_diff_path: str = f"{base_folder}/diffs/changed"
+    combined_diff_path: str = f"{base_folder}/diffs/full"
 
     @pytest.mark.parametrize(
         ("original_file", "changed_file", "awaited_diff_file"),
@@ -89,7 +91,7 @@ class TestGenerateDiff:
             ),
         ],
     )
-    def test_generate_diff(
+    def test_generate_diff_plain_files(
         self,
         original_file,
         changed_file,
