@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from gendiff import generate_diff
-from gendiff.utils.file_paths import TEST_FIXTURES_PATH, RESOURCE_FIXTURES_PATH
+from gendiff.utils.file_paths import RESOURCE_FIXTURES_PATH, TEST_FIXTURES_PATH
 
 
 class TestGenerateDiff:
