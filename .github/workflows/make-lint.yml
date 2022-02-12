@@ -5,7 +5,7 @@ on:
   - pull_request
 
 jobs:
-  run_lint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code

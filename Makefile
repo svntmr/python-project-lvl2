@@ -17,4 +17,7 @@ pre-commit-check:
 	pre-commit run --all-files
 
 run-tests:
-	pytest tests
+	pytest
+
+test-coverage:
+	pytest --cov=gendiff --cov-report xml
