@@ -15,7 +15,11 @@ class ChangeType(Enum):
 
 class Change(BaseModel):
     key: str
+    type: ChangeType
     value: Any
     changed_value: Optional[Any] = None
-    type: ChangeType
-    nested_changes: Optional[List[Change]]
+    nested_changes: Optional[List[Change]] = None
+
+    @property
+    def has_nested_changes(self) -> bool:
+        return bool(self.nested_changes)

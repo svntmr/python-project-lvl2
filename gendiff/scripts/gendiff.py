@@ -1,11 +1,9 @@
-"""Main script of the project."""
 import argparse
 
 from gendiff import generate_diff
 
 
 def main():
-    """Start cli tool instance."""
     args = parse_args()
     diff = generate_diff(args.first_file, args.second_file)
     print(diff)
