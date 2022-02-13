@@ -2,7 +2,7 @@ from operator import attrgetter
 from typing import List
 
 from gendiff.classes.change import Change, ChangeType
-from gendiff.utils.diff_generator import make_diff_string
+from gendiff.utils.diff_generator import generate_diff_string
 from gendiff.utils.file_operations import get_file_content
 
 
@@ -15,7 +15,7 @@ def generate_diff(first_file_path: str, second_file_path: str) -> str:
         changed=second_file_content,
     )
 
-    return make_diff_string(changes)
+    return generate_diff_string(changes)
 
 
 def build_changes(source: dict, changed: dict) -> List[Change]:
