@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from enum import Enum, auto
-from typing import Any, Optional
+from typing import Any, List, Optional
 
 from pydantic import BaseModel
 
@@ -16,3 +18,4 @@ class Change(BaseModel):
     value: Any
     changed_value: Optional[Any] = None
     type: ChangeType
+    nested_changes: Optional[List[Change]]
