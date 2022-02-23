@@ -18,3 +18,7 @@
 #### YAML file diff
 
 [![asciicast](https://asciinema.org/a/RSIa97s3EpO5Usr8F5QhWCUwB.svg)](https://asciinema.org/a/RSIa97s3EpO5Usr8F5QhWCUwB)
+
+#### Nested diff
+
+[![asciicast](https://asciinema.org/a/0XODuhxViqB4ObGrTfMyiZZuo.svg)](https://asciinema.org/a/0XODuhxViqB4ObGrTfMyiZZuo)
