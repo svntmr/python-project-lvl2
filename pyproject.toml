@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.6.0"
+version = "0.7.0"
 description = "A small tool to find differences in files"
 authors = ["Savin Timur <svn.tmr@bk.ru>"]
 repository = 'https://github.com/svntmr/python-project-lvl2'

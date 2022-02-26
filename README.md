@@ -22,3 +22,7 @@
 #### Nested diff
 
 [![asciicast](https://asciinema.org/a/0XODuhxViqB4ObGrTfMyiZZuo.svg)](https://asciinema.org/a/0XODuhxViqB4ObGrTfMyiZZuo)
+
+#### Plain diff format
+
+[![asciicast](https://asciinema.org/a/T8CutcjkzZW46JHffP5trtvUV.svg)](https://asciinema.org/a/T8CutcjkzZW46JHffP5trtvUV)
