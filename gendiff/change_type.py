@@ -1,12 +1,12 @@
-from enum import Enum, auto
+from enum import Enum
 
 
 class ChangeType(Enum):
-    ADDED = auto()
-    ADDED_NESTED = auto()
-    CHANGED = auto()
-    CHANGED_NESTED = auto()
-    NESTED = auto()
-    NO_CHANGE = auto()
-    MISSING = auto()
-    MISSING_NESTED = auto()
+    ADDED = "added"
+    ADDED_NESTED = "added_nested"
+    CHANGED = "changed"
+    CHANGED_NESTED = "changed_nested"
+    NESTED = "nested"
+    NO_CHANGE = "no_change"
+    MISSING = "missing"
+    MISSING_NESTED = "missing_nested"
