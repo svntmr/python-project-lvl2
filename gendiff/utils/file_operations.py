@@ -8,7 +8,11 @@ from yaml import safe_load
 
 def get_file_content(file_path: str) -> dict:
     file = Path(file_path)
-    return _SUPPORTED_FILE_TYPES[file.suffix](file)
+    file_type = file.suffix
+    if file_type not in _SUPPORTED_FILE_TYPES.keys():
+        raise ValueError(f"Unsupported file type: {file_type}")
+
+    return _SUPPORTED_FILE_TYPES[file_type](file)
 
 
 def get_json_file_content(file_path: Union[Path, str]) -> dict:
