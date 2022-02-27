@@ -11,18 +11,26 @@
 
 [![asciicast](https://asciinema.org/a/ui1oQLiK6bOb9jEJVkBRBopLZ.svg)](https://asciinema.org/a/ui1oQLiK6bOb9jEJVkBRBopLZ)
 
-#### JSON file diff
+#### Supported file types
+
+##### JSON files diff
 
 [![asciicast](https://asciinema.org/a/HXdEbkC7QjxQibg3YV5Bk9EYM.svg)](https://asciinema.org/a/HXdEbkC7QjxQibg3YV5Bk9EYM)
 
-#### YAML file diff
+#### YAML files diff
 
 [![asciicast](https://asciinema.org/a/RSIa97s3EpO5Usr8F5QhWCUwB.svg)](https://asciinema.org/a/RSIa97s3EpO5Usr8F5QhWCUwB)
 
-#### Nested diff
+#### Diff formatting
+
+##### Stylish diff
 
 [![asciicast](https://asciinema.org/a/0XODuhxViqB4ObGrTfMyiZZuo.svg)](https://asciinema.org/a/0XODuhxViqB4ObGrTfMyiZZuo)
 
-#### Plain diff format
+##### Plain diff format
 
 [![asciicast](https://asciinema.org/a/T8CutcjkzZW46JHffP5trtvUV.svg)](https://asciinema.org/a/T8CutcjkzZW46JHffP5trtvUV)
+
+##### Json diff
+
+[![asciicast](https://asciinema.org/a/dBGQOaR1UQGYF3DOVHB8r6KLV.svg)](https://asciinema.org/a/dBGQOaR1UQGYF3DOVHB8r6KLV)
