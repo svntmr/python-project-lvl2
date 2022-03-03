@@ -5,7 +5,7 @@ from gendiff import generate_diff
 
 def main():
     args = parse_args()
-    diff = generate_diff(args.first_file, args.second_file)
+    diff = generate_diff(args.first_file, args.second_file, output_format=args.format)
     print(diff)
 
 
@@ -15,10 +15,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("second_file", type=str)
     parser.add_argument(
         "-f",
-        "--f",
-        metavar="FORMAT",
+        "--format",
+        metavar="format",
         type=str,
-        help="set format of output",
+        help="set the format of output",
+        default="stylish",
     )
     args = parser.parse_args()
     return args
