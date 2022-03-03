@@ -7,10 +7,11 @@ from pydantic import BaseModel
 
 
 class ChangeType(Enum):
+    ADDED = auto()
+    CHANGED = auto()
+    NESTED_START = auto
     NO_CHANGE = auto()
     MISSING = auto()
-    CHANGED = auto()
-    ADDED = auto()
 
 
 class Change(BaseModel):

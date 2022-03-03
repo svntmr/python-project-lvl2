@@ -18,11 +18,30 @@ repos:
       - id: mixed-line-ending
       - id: check-added-large-files
       - id: end-of-file-fixer
+        exclude: |
+          (?x)^(
+              tests/gendiff/fixtures/added_nested.diff|
+              tests/gendiff/fixtures/changed_nested.diff|
+              tests/gendiff/fixtures/combined_nested.diff|
+              tests/gendiff/fixtures/identical_nested.diff|
+              tests/gendiff/fixtures/missing_nested.diff|
+              tests/gendiff/fixtures/tricky_nested.diff
+          )$
       - id: trailing-whitespace
         # Exclude Markdown files because `  ` at the end of a line is a valid
         # syntax to notify a line break.
         # See https://github.com/pre-commit/pre-commit-hooks/issues/57
-        exclude: ".*\\.md"
+        exclude: |
+          (?x)^(
+              .*\\.md|
+              tests/gendiff/fixtures/outputs.py
+              tests/gendiff/fixtures/added_nested.diff|
+              tests/gendiff/fixtures/changed_nested.diff|
+              tests/gendiff/fixtures/combined_nested.diff|
+              tests/gendiff/fixtures/identical_nested.diff|
+              tests/gendiff/fixtures/missing_nested.diff|
+              tests/gendiff/fixtures/tricky_nested.diff
+          )$
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v2.5.1
     hooks:
