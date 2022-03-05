@@ -63,16 +63,6 @@ _MISSING = {
     "follow": {"type": ChangeType.NO_CHANGE, "value": False, "changed_value": None},
 }
 
-AWAITED_DIFFS = MappingProxyType(
-    {
-        "added": _ADDED,
-        "changed": _CHANGED,
-        "combined": _COMBINED,
-        "identical": _IDENTICAL,
-        "missing": _MISSING,
-    }
-)
-
 _IDENTICAL_NESTED = {
     "group2": {
         "type": ChangeType.NESTED,
@@ -724,13 +714,22 @@ _TRICKY_NESTED = {
     },
 }
 
-AWAITED_NESTED_DIFFS = MappingProxyType(
+EXPECTED_DIFFS = MappingProxyType(
     {
-        "added": _ADDED_NESTED,
-        "changed": _CHANGED_NESTED,
-        "combined": _COMBINED_NESTED,
-        "identical": _IDENTICAL_NESTED,
-        "missing": _MISSING_NESTED,
-        "tricky": _TRICKY_NESTED,
+        "plain": {
+            "added": _ADDED,
+            "changed": _CHANGED,
+            "combined": _COMBINED,
+            "identical": _IDENTICAL,
+            "missing": _MISSING,
+        },
+        "nested": {
+            "added": _ADDED_NESTED,
+            "changed": _CHANGED_NESTED,
+            "combined": _COMBINED_NESTED,
+            "identical": _IDENTICAL_NESTED,
+            "missing": _MISSING_NESTED,
+            "tricky": _TRICKY_NESTED,
+        },
     }
 )

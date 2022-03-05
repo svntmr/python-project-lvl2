@@ -1,6 +1,7 @@
 import argparse
 
 from gendiff import generate_diff
+from gendiff.formatting import AvailableFormatsEnum
 
 
 def main():
@@ -16,10 +17,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-f",
         "--format",
-        metavar="format",
         type=str,
-        help="set the format of output",
-        default="stylish",
+        help="set the format of output. The default value is stylish",
+        choices=AvailableFormatsEnum.values(),
+        default=AvailableFormatsEnum.STYLISH.value,
     )
     args = parser.parse_args()
     return args
