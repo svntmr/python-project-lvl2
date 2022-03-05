@@ -1,4 +1,4 @@
-name: Project code check with flake8
+name: pre-commit hooks
 
 on:
   - push
