@@ -1,94 +1,67 @@
 import pytest
-from gendiff.formatting.stylish import generate_output
-from tests.gendiff.fixtures.diffs import AWAITED_DIFFS, AWAITED_NESTED_DIFFS
-from tests.gendiff.fixtures.outputs import (
-    AWAITED_NESTED_OUTPUTS,
-    AWAITED_OUTPUTS,
-)
+from gendiff.formatting.plain import generate_output as plain_output
+from gendiff.formatting.stylish import generate_output as stylish_output
+from tests.gendiff.fixtures.diffs import EXPECTED_DIFFS
+from tests.gendiff.fixtures.outputs import EXPECTED_OUTPUTS
 
 
-class TestGenerateOutputPlain:
+class TestStylishOutput:
     @pytest.mark.parametrize(
         ("diff_dict", "awaited_diff"),
         [
             pytest.param(
-                AWAITED_DIFFS["identical"],
-                AWAITED_OUTPUTS["identical"],
+                EXPECTED_DIFFS["plain"]["identical"],
+                EXPECTED_OUTPUTS["stylish"]["plain"]["identical"],
                 id="identical diff",
             ),
             pytest.param(
-                AWAITED_DIFFS["identical"],
-                AWAITED_OUTPUTS["identical"],
-                id="identical diff",
-            ),
-            pytest.param(
-                AWAITED_DIFFS["missing"],
-                AWAITED_OUTPUTS["missing"],
+                EXPECTED_DIFFS["plain"]["missing"],
+                EXPECTED_OUTPUTS["stylish"]["plain"]["missing"],
                 id="missing diff",
             ),
             pytest.param(
-                AWAITED_DIFFS["missing"],
-                AWAITED_OUTPUTS["missing"],
-                id="missing diff",
-            ),
-            pytest.param(
-                AWAITED_DIFFS["added"],
-                AWAITED_OUTPUTS["added"],
+                EXPECTED_DIFFS["plain"]["added"],
+                EXPECTED_OUTPUTS["stylish"]["plain"]["added"],
                 id="added diff",
             ),
             pytest.param(
-                AWAITED_DIFFS["changed"],
-                AWAITED_OUTPUTS["changed"],
+                EXPECTED_DIFFS["plain"]["changed"],
+                EXPECTED_OUTPUTS["stylish"]["plain"]["changed"],
                 id="changed diff",
             ),
             pytest.param(
-                AWAITED_DIFFS["combined"],
-                AWAITED_OUTPUTS["combined"],
+                EXPECTED_DIFFS["plain"]["combined"],
+                EXPECTED_OUTPUTS["stylish"]["plain"]["combined"],
                 id="combined diff",
             ),
-        ],
-    )
-    def test_generate_diff(
-        self,
-        diff_dict,
-        awaited_diff,
-    ):
-        diff = generate_output(diff_dict)
-        assert diff == awaited_diff
-
-
-class TestGenerateOutputNested:
-    @pytest.mark.parametrize(
-        ("diff_dict", "awaited_diff"),
-        [
             pytest.param(
-                AWAITED_NESTED_DIFFS["identical"],
-                AWAITED_NESTED_OUTPUTS["identical"],
+                EXPECTED_DIFFS["nested"]["identical"],
+                EXPECTED_OUTPUTS["stylish"]["nested"]["identical"],
                 id="identical nested diff",
             ),
             pytest.param(
-                AWAITED_NESTED_DIFFS["missing"],
-                AWAITED_NESTED_OUTPUTS["missing"],
+                EXPECTED_DIFFS["nested"]["missing"],
+                EXPECTED_OUTPUTS["stylish"]["nested"]["missing"],
                 id="missing nested diff",
             ),
             pytest.param(
-                AWAITED_NESTED_DIFFS["added"],
-                AWAITED_NESTED_OUTPUTS["added"],
+                EXPECTED_DIFFS["nested"]["added"],
+                EXPECTED_OUTPUTS["stylish"]["nested"]["added"],
                 id="added nested diff",
             ),
             pytest.param(
-                AWAITED_NESTED_DIFFS["changed"],
-                AWAITED_NESTED_OUTPUTS["changed"],
+                EXPECTED_DIFFS["nested"]["changed"],
+                EXPECTED_OUTPUTS["stylish"]["nested"]["changed"],
                 id="changed nested diff",
             ),
             pytest.param(
-                AWAITED_NESTED_DIFFS["combined"],
-                AWAITED_NESTED_OUTPUTS["combined"],
+                EXPECTED_DIFFS["nested"]["combined"],
+                EXPECTED_OUTPUTS["stylish"]["nested"]["combined"],
                 id="combined nested diff",
             ),
             pytest.param(
-                AWAITED_NESTED_DIFFS["tricky"],
-                AWAITED_NESTED_OUTPUTS["tricky"],
+                EXPECTED_DIFFS["nested"]["tricky"],
+                EXPECTED_OUTPUTS["stylish"]["nested"]["tricky"],
                 id="tricky nested diff",
             ),
         ],
@@ -98,5 +71,71 @@ class TestGenerateOutputNested:
         diff_dict,
         awaited_diff,
     ):
-        diff = generate_output(diff_dict)
+        diff = stylish_output(diff_dict)
+        assert diff == awaited_diff
+
+
+class TestPlainOutput:
+    @pytest.mark.parametrize(
+        ("diff_dict", "awaited_diff"),
+        [
+            pytest.param(
+                EXPECTED_DIFFS["plain"]["identical"],
+                EXPECTED_OUTPUTS["plain"]["plain"]["identical"],
+                id="identical diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["plain"]["missing"],
+                EXPECTED_OUTPUTS["plain"]["plain"]["missing"],
+                id="missing diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["plain"]["added"],
+                EXPECTED_OUTPUTS["plain"]["plain"]["added"],
+                id="added diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["plain"]["changed"],
+                EXPECTED_OUTPUTS["plain"]["plain"]["changed"],
+                id="changed diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["plain"]["combined"],
+                EXPECTED_OUTPUTS["plain"]["plain"]["combined"],
+                id="combined diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["nested"]["identical"],
+                EXPECTED_OUTPUTS["plain"]["nested"]["identical"],
+                id="identical nested diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["nested"]["missing"],
+                EXPECTED_OUTPUTS["plain"]["nested"]["missing"],
+                id="missing nested diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["nested"]["added"],
+                EXPECTED_OUTPUTS["plain"]["nested"]["added"],
+                id="added nested diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["nested"]["changed"],
+                EXPECTED_OUTPUTS["plain"]["nested"]["changed"],
+                id="changed nested diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["nested"]["combined"],
+                EXPECTED_OUTPUTS["plain"]["nested"]["combined"],
+                id="combined nested diff",
+            ),
+            pytest.param(
+                EXPECTED_DIFFS["nested"]["tricky"],
+                EXPECTED_OUTPUTS["plain"]["nested"]["tricky"],
+                id="tricky nested diff",
+            ),
+        ],
+    )
+    def test_generate_diff(self, diff_dict, awaited_diff):
+        diff = plain_output(diff_dict)
         assert diff == awaited_diff
