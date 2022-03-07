@@ -8,52 +8,47 @@ def build_changes_dict(source: dict, changed: dict) -> Dict:
     changes_dict = {}
 
     for key, change_type in dicts_diff.items():
+        value = None
+        changed_value = None
+
         if change_type is ChangeType.NESTED:
-            changes_dict[key] = _build_change(
-                change_type,
-                build_changes_dict(source.get(key, {}), changed.get(key, {})),
-            )
+            value = build_changes_dict(source.get(key, {}), changed.get(key, {}))
 
         if change_type is ChangeType.MISSING_NESTED:
-            changes_dict[key] = _build_change(
-                change_type,
-                build_changes_dict(source.get(key, {}), source.get(key, {})),
-            )
+            value = build_changes_dict(source.get(key, {}), source.get(key, {}))
 
         if change_type is ChangeType.ADDED_NESTED:
-            changes_dict[key] = _build_change(
-                change_type,
-                build_changes_dict(changed.get(key, {}), changed.get(key, {})),
-            )
+            value = build_changes_dict(changed.get(key, {}), changed.get(key, {}))
 
         if change_type is ChangeType.CHANGED_NESTED and isinstance(
             source.get(key), dict
         ):
-            changes_dict[key] = _build_change(
-                change_type,
-                build_changes_dict(source.get(key, {}), source.get(key, {})),
-                changed.get(key),
-            )
+            value = build_changes_dict(source.get(key, {}), source.get(key, {}))
+            changed_value = changed.get(key)
 
         if change_type is ChangeType.CHANGED_NESTED and isinstance(
             changed.get(key), dict
         ):
-            changes_dict[key] = _build_change(
-                change_type,
-                source.get(key),
-                build_changes_dict(changed.get(key, {}), changed.get(key, {})),
+            value = source.get(key)
+            changed_value = build_changes_dict(
+                changed.get(key, {}), changed.get(key, {})
             )
 
         if change_type is ChangeType.ADDED:
-            changes_dict[key] = _build_change(change_type, changed.get(key))
+            value = changed.get(key)
 
         if change_type is ChangeType.CHANGED:
-            changes_dict[key] = _build_change(
-                change_type, source.get(key), changed.get(key)
-            )
+            value = source.get(key)
+            changed_value = changed.get(key)
 
         if change_type in (ChangeType.MISSING, ChangeType.NO_CHANGE):
-            changes_dict[key] = _build_change(change_type, source.get(key))
+            value = source.get(key)
+
+        changes_dict[key] = _build_change(
+            change_type,
+            value,
+            changed_value,
+        )
 
     return changes_dict
 
